@@ -1,0 +1,15 @@
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\MainWindow.g.cs
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\App.g.cs
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer_MarkupCompile.cache
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer_MarkupCompile.lref
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\bin\Debug\RinexFixer.exe.config
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\bin\Debug\RinexFixer.exe
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\bin\Debug\RinexFixer.pdb
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\MainWindow.baml
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer.g.resources
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer.Properties.Resources.resources
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer.csproj.GenerateResource.cache
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer.csproj.CoreCompileInputs.cache
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer.exe
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer.pdb
+\\Mac\Home\Documents\personalprojects\RinexFixer\RinexFixer\obj\Debug\RinexFixer.csprojAssemblyReference.cache

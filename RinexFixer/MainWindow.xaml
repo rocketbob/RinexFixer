@@ -1,0 +1,15 @@
+﻿<Window x:Class="RinexFixer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RinexFixer"
+        mc:Ignorable="d"
+        Title="RinexFixer" Height="566.585" Width="741.337">
+    <Grid Margin="0,0,0,94">
+        <Button Name="btnOpenFile" Click="OpenFile" Content="Open File" HorizontalAlignment="Left" Height="34" Margin="10,10,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button Name="btnOpenFolder" Click="OpenFolder" Content="Open Folder" HorizontalAlignment="Left" Height="34" Margin="135,10,0,0" VerticalAlignment="Top" Width="110"/>
+        <TextBox Name="txtEditor"  HorizontalAlignment="Left" Height="375" Margin="10,49,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="712"/>
+        <Button Content="Fix!" Click="Fix" HorizontalAlignment="Left" Height="34" Margin="612,437,0,-36.5" VerticalAlignment="Top" Width="110"/>
+    </Grid>
+</Window>

@@ -68,7 +68,7 @@ namespace RinexFixer
             try
             {
                 Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-                openFileDialog.Filter = "All files (*.*)|*.*";
+                openFileDialog.Filter = "Rinex Files (*.**o)|*.*o|All files (*.*)|*.*";
                 if (openFileDialog.ShowDialog() == true)
                 {
                     _fileName = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName);
@@ -88,7 +88,6 @@ namespace RinexFixer
 
         private void Fix(object sender, RoutedEventArgs e)
         {
-            bool suppressOk = false;
             try
             {
                 if(_processingMultipleFiles == true) // working on a dir
@@ -113,18 +112,11 @@ namespace RinexFixer
             }
             catch(Exception ex)
             {
-                suppressOk = true;
                 MessageBoxResult msgBox = System.Windows.MessageBox.Show(ex.ToString(), "RinexFixer Error");
             }
             finally
             {
                 Mouse.OverrideCursor = null;
-                if (!suppressOk)
-                {
-                    MessageBoxResult msgBox = System.Windows.MessageBox.Show("Done.", "RinexFixer");
-                }
-                 
-                suppressOk = false;
             }
         }
 
@@ -148,18 +140,21 @@ namespace RinexFixer
                 while ((line = reader.ReadLine()) != null)
                 {
                     if (line.Contains("END OF HEADER"))
-                        startParsingBody = true;
+                        startParsingBody = true; // parse body
                     else // look for dates in header
                     {
                         var possibleDate = line.Substring(2, 16);
                         DateTime test;
                         if (DateTime.TryParseExact(possibleDate, "yyyy     M     d", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite, out test))
-                        {
-                            var newDate = test.AddDays(1024 * 7);
-                            string year = newDate.ToString("yyyy");
-                            string mo = padSpace(newDate.Month.ToString());
-                            string day = padSpace(newDate.Day.ToString());
-                            line = line.Replace(possibleDate, year + "    " + mo + "    " + day);
+                        {  
+                            var newDate = test.AddDays(1024 * 7); // ignore anything over 5 years old in case we pick up a bogus date.  Not perfect but will do.
+                            if (newDate >= DateTime.Now.AddYears(-5))
+                            {
+                                string year = newDate.ToString("yyyy");
+                                string mo = padSpace(newDate.Month.ToString());
+                                string day = padSpace(newDate.Day.ToString());
+                                line = line.Replace(possibleDate, year + "    " + mo + "    " + day);
+                            }
                         }
                     }
 
@@ -169,12 +164,15 @@ namespace RinexFixer
                         DateTime test;
                         if (DateTime.TryParseExact(possibleDate, "yy M d", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite, out test))
                         {
-                            var newDate = test.AddDays(1024 * 7);
-                            // string newdt = newDate.ToString("yy M d");
-                            string year = newDate.ToString("yy");
-                            string mo = padSpace(newDate.Month.ToString());
-                            string day = padSpace(newDate.Day.ToString());
-                            line = line.Replace(possibleDate, year + " " + mo + " " + day);
+                            var newDate = test.AddDays(1024 * 7); // ignore anything over 5 years old in case we pick up a bogus date.  Not perfect but will do.
+                            if (newDate >= DateTime.Now.AddYears(-5))
+                            {
+                                string year = newDate.ToString("yy");
+                                string mo = padSpace(newDate.Month.ToString());
+                                string day = padSpace(newDate.Day.ToString());
+                                line = line.Replace(possibleDate, year + " " + mo + " " + day);
+                            }
+
                         }
                     }
                     output.Append(line);
@@ -183,7 +181,8 @@ namespace RinexFixer
             }
 
             resultText = output.ToString();
-            System.IO.File.WriteAllText(filePath + "\\" + fileName + "fixedFileDrewIsGay" + "." + fileExtension, resultText);
+            //rename new files to <oldFileName>.YYo where YY is new year i.e. 19 from 2019
+            System.IO.File.WriteAllText(filePath + "\\" + fileName + "." + DateTime.Now.ToString("yy") + "o", resultText);
             return resultText;
         }
     }

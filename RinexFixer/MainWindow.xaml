@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RinexFixer"
         mc:Ignorable="d"
-        Title="RinexFixer" Height="566.585" Width="741.337">
-    <Grid Margin="0,0,0,94">
+        Title="RinexFixer" Height="573.085" Width="741.337">
+    <Grid Margin="0,0,0,0">
         <Button Name="btnOpenFile" Click="OpenFile" Content="Open File" HorizontalAlignment="Left" Height="34" Margin="10,10,0,0" VerticalAlignment="Top" Width="110"/>
         <Button Name="btnOpenFolder" Click="OpenFolder" Content="Open Folder" HorizontalAlignment="Left" Height="34" Margin="135,10,0,0" VerticalAlignment="Top" Width="110"/>
-        <TextBox Name="txtEditor"  HorizontalAlignment="Left" Height="375" Margin="10,49,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="712"/>
-        <Button Content="Fix!" Click="Fix" HorizontalAlignment="Left" Height="34" Margin="612,437,0,-36.5" VerticalAlignment="Top" Width="110"/>
+        <TextBox Name="txtEditor" FontFamily="Consolas" FontSize="16"  HorizontalAlignment="Left" Height="447" Margin="10,49,0,-44.5" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="717"/>
+        <Button Content="Fix!" Click="Fix" HorizontalAlignment="Left" Height="34" Margin="612,501,0,-83.5" VerticalAlignment="Top" Width="110"/>
     </Grid>
 </Window>

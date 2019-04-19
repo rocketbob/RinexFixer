@@ -19,10 +19,6 @@ using System.Windows.Shapes;
 
 namespace RinexFixer
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-
     public partial class MainWindow : Window
     {
         string _fileName;
@@ -131,6 +127,7 @@ namespace RinexFixer
         private string fixFile(string fileText, string fileName, string fileExtension, string filePath)
         {
             var resultText = string.Empty;
+            DateTime headerDate = DateTime.Now;
             Mouse.OverrideCursor = System.Windows.Input.Cursors.Wait;
             var output = new StringBuilder();
             using (StringReader reader = new StringReader(fileText))
@@ -154,6 +151,7 @@ namespace RinexFixer
                                 string mo = padSpace(newDate.Month.ToString());
                                 string day = padSpace(newDate.Day.ToString());
                                 line = line.Replace(possibleDate, year + "    " + mo + "    " + day);
+                                headerDate = newDate;
                             }
                         }
                     }
@@ -165,7 +163,7 @@ namespace RinexFixer
                         if (DateTime.TryParseExact(possibleDate, "yy M d", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite, out test))
                         {
                             var newDate = test.AddDays(1024 * 7); // ignore anything over 5 years old in case we pick up a bogus date.  Not perfect but will do.
-                            if (newDate >= DateTime.Now.AddYears(-5))
+                            if (newDate >= headerDate.AddDays(-1) && newDate <= headerDate) // +1 days and no more
                             {
                                 string year = newDate.ToString("yy");
                                 string mo = padSpace(newDate.Month.ToString());
@@ -181,7 +179,6 @@ namespace RinexFixer
             }
 
             resultText = output.ToString();
-            //rename new files to <oldFileName>.YYo where YY is new year i.e. 19 from 2019
             System.IO.File.WriteAllText(filePath + "\\" + fileName + "." + DateTime.Now.ToString("yy") + "o", resultText);
             return resultText;
         }

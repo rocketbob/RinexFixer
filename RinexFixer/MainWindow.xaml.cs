@@ -1,21 +1,10 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace RinexFixer
 {
@@ -24,7 +13,6 @@ namespace RinexFixer
         string _fileName;
         string _fileExtension;
         string _filePath;
-        string _fullFilePathName;
         bool _processingMultipleFiles = false; // used only when processing entire directory
 
         public MainWindow()
@@ -70,7 +58,6 @@ namespace RinexFixer
                     _fileName = System.IO.Path.GetFileNameWithoutExtension(openFileDialog.FileName);
                     _fileExtension = System.IO.Path.GetExtension(openFileDialog.FileName);
                     _filePath = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
-                    _fullFilePathName = openFileDialog.FileName;
                     _processingMultipleFiles = false;
 
                     txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
